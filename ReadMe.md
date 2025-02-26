@@ -39,7 +39,7 @@ This framework also supports API automation using **Rest Assured**. API tests ca
 ### Running API Tests
 API test scenarios can be tagged accordingly and executed using:::;
 ```sh
-mvn test -Dcucumber.filter.tags="@API"
+mvn test -Dcucumber.filter.tags="@API_Test1"
 ```
 
 API test reports will be available in the same `target/cucumber-reports/` directory.
