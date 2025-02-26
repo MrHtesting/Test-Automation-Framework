@@ -1,7 +1,7 @@
 # 🚀 Test Automation Framework
 
 ## 📌 Overview
-This is a robust test automation framework designed for executing automated tests efficiently. It integrates with Cucumber, Selenium, and Maven to provide seamless test execution and reporting.
+This is a robust test automation framework designed for executing automated tests efficiently. It integrates with Cucumber, Selenium, Maven, and Rest Assured to provide seamless test execution and reporting for both UI and API automation.
 
 ## 🎯 How to Execute Tests
 You can specify the test scenarios to run by setting the desired **tags** in the `TestRunner.java` class.
@@ -30,4 +30,18 @@ target/cucumber-reports/index.html
 Ensure the following are installed:
 - **Java 17+**
 - **Maven**
-- **Google Chrome** 
+- **Google Chrome**
+- **Rest Assured** (for API automation)
+
+## 💪 API Automation with Rest Assured
+This framework also supports API automation using **Rest Assured**. API tests can be written to validate endpoints, request/response structures, and integrations.
+
+### Running API Tests
+API test scenarios can be tagged accordingly and executed using:::;
+```sh
+mvn test -Dcucumber.filter.tags="@API"
+```
+
+API test reports will be available in the same `target/cucumber-reports/` directory.
+
+
