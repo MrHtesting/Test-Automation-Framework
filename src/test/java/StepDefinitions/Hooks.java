@@ -3,29 +3,32 @@ package StepDefinitions;
 import Utilities.GenericFunctions;
 import Utilities.WebBrowser;
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import org.openqa.selenium.WebDriver;
+
 
 public class Hooks extends WebBrowser {
 
-
-    public Hooks() {
-        WebDriver driver;
+    @Before
+    public void beforeScenario() {
+        driver = null;
+        driver = WebBrowser.getDriver();
     }
 
     @After
     public void afterScenario(Scenario scenario) {
-        if (scenario.isFailed()) {
-
-            byte[] screenshotBytes = GenericFunctions.captureScreenshotAsBytes(driver);
-
-
-            scenario.attach(screenshotBytes, "image/png", scenario.getName());
+        try {
+            if (scenario.isFailed() && driver != null) {
+                byte[] screenshotBytes = GenericFunctions.captureScreenshotAsBytes(driver);
+                scenario.attach(screenshotBytes, "image/png", scenario.getName());
+            }
+        } catch (Exception e) {
+            System.out.println("Exception while taking screenshot: " + e.getMessage());
+        } finally {
+            if (driver != null) {
+                driver.quit();
+                driver = null;
+            }
         }
-
-        if (driver != null) {
-            driver.quit();
-        }
-
     }
 }
